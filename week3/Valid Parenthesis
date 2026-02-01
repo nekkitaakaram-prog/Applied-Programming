@@ -1,0 +1,34 @@
+import java.util.Stack;
+import java.util.HashMap;
+
+class Solution {
+    public boolean isValid(String s) {
+
+        
+        HashMap<Character, Character> match = new HashMap<>();
+        match.put('(', ')');
+        match.put('{', '}');
+        match.put('[', ']');
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+
+            
+            if (match.containsKey(ch)) {
+                stack.push(ch);
+            } 
+           
+            else {
+                
+                if (stack.isEmpty() || match.get(stack.peek()) != ch) {
+                    return false;
+                }
+                stack.pop();
+            }
+        }
+
+      
+        return stack.isEmpty();
+    }
+}
